@@ -1,3 +1,4 @@
 # CLB 直连 Pod
 
-* [GlobalRouter + VPC-CNI 集群网络启用 CLB 直连](./gr-vpc-cni)
+* 如果用的 TKE Serverless 集群，或者集群里只有超级节点，或者用的 VPC-CNI 网络，都可以直接用本目录的 yaml 测试直连。
+* 如果是GlobalRouter + VPC-CNI 集群网络，使用 [该目录](./gr-vpc-cni) 下的 yaml 测试直连。
