@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  template:
+    metadata:
+      annotations:
+        tke.cloud.tencent.com/networks: tke-route-eni
+    spec:
+      containers:
+        - name: nginx
+          resources:
+            requests:
+              tke.cloud.tencent.com/eni-ip: "1"
+            limits:
+              tke.cloud.tencent.com/eni-ip: "1"
