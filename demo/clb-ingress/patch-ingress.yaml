@@ -1,0 +1,44 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: qcloud
+    kubernetes.io/ingress.http-rules: |
+      [
+        {
+          "host": "example.com",
+          "pathType": ["RegexIgnoreCase", "NonAbsolutePath"],
+          "path": "/api/v1/device/.*/info",
+          "backend": {"serviceName": "nginx", "servicePort": "80"}
+        },
+        {
+          "host": "example.com",
+          "pathType": ["RegexIgnoreCase", "NonAbsolutePath"],
+          "path": "/.*\\.json",
+          "backend": {"serviceName": "nginx", "servicePort": "80"}
+        }
+      ]
+    kubernetes.io/ingress.rule-mix: false
+  name: nginx
+spec:
+  rules:
+    - host: example.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: nginx
+                port:
+                  number: 80
+            path: "/api/v1/device/.*/info"
+            pathType: ImplementationSpecific
+    - host: example.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: nginx
+                port:
+                  number: 80
+            path: "/.*\\.json"
+            pathType: ImplementationSpecific
