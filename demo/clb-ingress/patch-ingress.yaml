@@ -15,10 +15,10 @@ metadata:
           "host": "example.com",
           "pathType": ["RegexIgnoreCase", "NonAbsolutePath"],
           "path": "/.*\\.json",
-          "backend": {"serviceName": "nginx", "servicePort": "80"}
+          "backend": {"serviceName": "nginx-b", "servicePort": "80"}
         }
       ]
-    kubernetes.io/ingress.rule-mix: false
+    kubernetes.io/ingress.rule-mix: true
   name: nginx
 spec:
   rules:
@@ -37,7 +37,7 @@ spec:
         paths:
           - backend:
               service:
-                name: nginx
+                name: nginx-b
                 port:
                   number: 80
             path: "/.*\\.json"

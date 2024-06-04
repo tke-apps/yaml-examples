@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - ../../apps/nginx/ingress
+  - nginx-b-service.yaml
 
 components:
   - ../../apps/nginx/nodeport-patch
