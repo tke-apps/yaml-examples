@@ -5,12 +5,4 @@ resources:
   - ../base
 
 patches:
-  - target:
-      group: ""
-      version: v1
-      kind: Service
-      name: nginx
-    patch: |-
-      - op: replace
-        path: /spec/type
-        value: LoadBalancer
+  - path: patch.yaml
