@@ -1,0 +1,43 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cluster-admin
+  labels:
+    kubernetes.io/bootstrapping: rbac-defaults
+rules:
+  - apiGroups:
+      - "*"
+    resources:
+      - "*"
+    verbs:
+      - "*"
+  - nonResourceURLs:
+      - "*"
+    verbs:
+      - "*"
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cluster-admin
+  namespace: kube-system
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    kubernetes.io/bootstrapping: rbac-defaults
+  name: cluster-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: cluster-admin
+    namespace: kube-system
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:masters
