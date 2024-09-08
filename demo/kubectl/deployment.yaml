@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubectl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubectl
+  template:
+    metadata:
+      labels:
+        app: kubectl
+    spec:
+      serviceAccountName: kubectl
+      containers:
+        - name: kubectl
+          image: bitnami/kubectl:latest

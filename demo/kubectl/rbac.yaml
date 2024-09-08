@@ -1,0 +1,36 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kubectl
+rules:
+  - apiGroups:
+      - "*"
+    resources:
+      - "*"
+    verbs:
+      - "*"
+  - nonResourceURLs:
+      - "*"
+    verbs:
+      - "*"
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kubectl
+  namespace: test
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kubectl
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubectl
+subjects:
+  - kind: ServiceAccount
+    name: kubectl
+    namespace: test
