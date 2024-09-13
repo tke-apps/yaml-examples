@@ -1,13 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: not-important
 spec:
   template:
     metadata:
       annotations:
-        # highlight-start
         tke.cloud.tencent.com/need-ipv6-addr: "true" # 打上这个，pod会配置ipv6地址
         tke.cloud.tencent.com/ipv6-attributes: '{"InternetMaxBandwidthOut": 100}' # 打上这个， ipv6地址额外开启公网访问能力
         # tke.cloud.tencent.com/ipv6-attributes: '{"BandwidthPackageId":"bwp-xxx","InternetChargeType":"BANDWIDTH_PACKAGE","InternetMaxBandwidthOut":1}' # 如需带宽包，参考这个配置
-        # highlight-end
