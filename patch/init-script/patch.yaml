@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: not-immportant
+spec:
+  template:
+    spec:
+      initContainers:
+        - name: init-script
+          image: busybox:latest
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              echo "Running custom script"
