@@ -3,3 +3,5 @@ kind: Component
 
 patches:
   - path: patch.yaml
+    target:
+      kind: Service
